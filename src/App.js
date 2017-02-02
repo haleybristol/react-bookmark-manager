@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Subject from './Subject.js';
 
 class App extends Component {
   constructor() {
@@ -77,12 +76,8 @@ class App extends Component {
   render() {
     return(
       <div>
-        {this.state.resources.map((resource) => {
-          return <ul>
-              <li><a href={resource.url}>{resource.title}</a></li>
-            </ul>
-
-        })}
+        Parent Component
+        <Subject />
       </div>
     );
   }
