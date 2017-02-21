@@ -5,9 +5,13 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.addNewResource = this.addNewResource.bind(this)
+    this.addNewResource = this.addNewResource.bind(this);
+    this.addNewSubject = this.addNewSubject.bind(this);
+    this.handleTyping = this.handleTyping.bind(this);
 
-    this.state = {resources: [
+    this.state = {
+      subject: '',
+      resources: [
       {subject: "Functional Programming Basics", resources: [
         {
           title: "Higher Order Functions Explained",
@@ -146,11 +150,28 @@ class App extends Component {
 
   //event handlers here
 
+  handleTyping(e) {
+    this.setState({[e.target.name]: e.target.value})
+  }
+
+  addNewSubject(e) {
+    e.preventDefault();
+    const newSubject = {
+      subject: this.state.subject,
+      resources: []
+    }
+    const tempState = this.state;
+    tempState.resources.push(newSubject);
+    this.setState(tempState);
+    sessionStorage.setItem(tempState);
+  }
+
   addNewResource(subject, resource) {
     const tempState = this.state;
     tempState.resources[subject].resources.push(resource);
-    this.setState(tempState)
+    this.setState(tempState);
   }
+
   render() {
     return(
       <div>
@@ -161,6 +182,13 @@ class App extends Component {
             )
           })
         }
+        <div className="container">
+          <form>
+            <label htmlFor="subject"></label>
+            <input name="subject" id="subject" onChange={this.handleTyping} value={this.state.subject}/>
+            <button onClick={this.addNewSubject}>Add Subject</button>
+          </form>
+        </div>
       </div>
     );
   }

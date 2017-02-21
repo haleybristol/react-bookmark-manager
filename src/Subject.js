@@ -47,12 +47,12 @@ export default class Subject extends Component {
 		  				<h3 onClick={this.handleClick}>{this.props.items.subject}</h3>
 						</div>
 					<div className="col-xs-8">
-			  		<ul>
+			  		<ul className="list-unstyled">
 			  			{this.props.items.resources.map((resource) => {
 			  				if (this.state.isClicked) {
 				  				return(
-				  					<li>
-				  						<a href={resource.url} className="no-decoration">{resource.title}</a>
+				  					<li >
+				  						<a href={resource.url} >{resource.title}</a>
 				  					</li>
 				  				)
 			  				}
