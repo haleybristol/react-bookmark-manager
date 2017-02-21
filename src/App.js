@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Subject from './Subject.js';
+import AddNewSubject from './AddNewSubject.js';
 
 class App extends Component {
   constructor(props) {
@@ -154,16 +155,30 @@ class App extends Component {
     this.setState({[e.target.name]: e.target.value})
   }
 
-  addNewSubject(e) {
-    e.preventDefault();
+  // addNewSubject(e) {
+  //   e.preventDefault();
+  //   const newSubject = {
+  //     subject: this.state.subject,
+  //     resources: []
+  //   }
+  //   const tempState = this.state;
+  //   tempState.resources.push(newSubject);
+  //   this.setState(tempState);
+  //   sessionStorage.setItem(tempState);
+  // }
+
+  addNewSubject(subject) {
     const newSubject = {
-      subject: this.state.subject,
+      subject: subject,
       resources: []
     }
-    const tempState = this.state;
-    tempState.resources.push(newSubject);
-    this.setState(tempState);
-    sessionStorage.setItem(tempState);
+    const tempResources = this.state.resources;
+    tempResources.unshift(newSubject);
+
+    this.setState({
+      resources: tempResources
+    });
+
   }
 
   addNewResource(subject, resource) {
@@ -182,13 +197,7 @@ class App extends Component {
             )
           })
         }
-        <div className="container">
-          <form>
-            <label htmlFor="subject"></label>
-            <input name="subject" id="subject" onChange={this.handleTyping} value={this.state.subject}/>
-            <button onClick={this.addNewSubject}>Add Subject</button>
-          </form>
-        </div>
+        <AddNewSubject addSubject={this.addNewSubject} />
       </div>
     );
   }
