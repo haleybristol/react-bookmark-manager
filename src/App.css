@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+.well-red {
+  height: 100%;
+}
+.left-column {
+  background-color: lightgray;
+  width: 100%;
+}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -21,4 +28,8 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+ ul {
+  list-style: none !important;
 }
