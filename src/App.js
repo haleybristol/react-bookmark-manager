@@ -190,14 +190,15 @@ class App extends Component {
   render() {
     return(
       <div>
+      <AddNewSubject addSubject={this.addNewSubject} />
         {
           this.state.resources.map((resource, index) => {
             return(
-              <Subject index={index} items={resource} addResource={this.addNewResource}/>
+              <Subject key={resource.subject + index} index={index} items={resource} addResource={this.addNewResource}/>
             )
           })
         }
-        <AddNewSubject addSubject={this.addNewSubject} />
+
       </div>
     );
   }

@@ -43,10 +43,10 @@ export default class Subject extends Component {
 		return(
 			<div className="container">
 				<div className="row">
-						<div className="col-xs-4 well well-red">
-		  				<h3 onClick={this.handleClick}>{this.props.items.subject}</h3>
+						<div className="col-xs-3">
+		  				<p onClick={this.handleClick}>{this.props.items.subject}</p>
 						</div>
-					<div className="col-xs-8">
+					<div className="col-xs-9">
 			  		<ul className="list-unstyled">
 			  			{this.props.items.resources.map((resource) => {
 			  				if (this.state.isClicked) {
@@ -60,15 +60,9 @@ export default class Subject extends Component {
 			  			)}
 			  		</ul>
 			  		<form>
-			  			<label htmlFor="title">
-			  				Title&nbsp;
-				  			<input name="title" id="title" onChange={this.handleTyping} value={this.state.title}  />
-				  		</label>
+				  		<input name="title" id="title" onChange={this.handleTyping} value={this.state.title} placeholder="title"/>
 				  		<br/>
-				  		<label htmlFor="url">
-			  				URL&nbsp;
-				  			<input name="url" id="url" onChange={this.handleTyping} value={this.state.url}  />
-				  		</label>
+				  		<input name="url" id="url" onChange={this.handleTyping} value={this.state.url} placeholder="url" />
 				  		<br/>
 				  		<button onClick={this.handleSubmit}>Add Resource</button>
 			  		</form>

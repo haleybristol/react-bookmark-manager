@@ -22,6 +22,10 @@ export default class AddNewSubject extends Component {
 
         this.props.addSubject(this.state.subject);
 
+        this.setState({
+            subject: ''
+        })
+
     }
 
     render() {
