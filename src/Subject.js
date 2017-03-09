@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import Delete from './Delete';
 
 export default class Subject extends Component {
 	constructor(props) {
@@ -8,10 +9,13 @@ export default class Subject extends Component {
 		this.handleTyping = this.handleTyping.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 
+
 		this.state = {
 			isClicked: false,
 			title: "",
 			url: "",
+			resources: this.props.items.resources,
+			subject: this.props.items
 		};
 
 	}
@@ -34,38 +38,53 @@ export default class Subject extends Component {
 	}
 
 	handleTyping(e) {
+		console.log(e);
+		console.log(e.target);
 		this.setState({[e.target.name]: e.target.value})
 	}
 
+	// const Container = styled.div`
 
+	// `
 
 	render() {
 		return(
 			<div className="container">
 				<div className="row">
 						<div className="col-xs-3">
-		  				<p onClick={this.handleClick}>{this.props.items.subject}</p>
+		  				<button onClick={() => this.props.deleteSubject(this.props.index)}>X</button><p>{this.props.items.subject}</p>
+
 						</div>
 					<div className="col-xs-9">
 			  		<ul className="list-unstyled">
-			  			{this.props.items.resources.map((resource) => {
-			  				if (this.state.isClicked) {
-				  				return(
-				  					<li >
-				  						<a href={resource.url} >{resource.title}</a>
-				  					</li>
-				  				)
-			  				}
+			  			{this.props.items.resources.map((resource, index) => {
+			  				return(
+			  					<li>
+                   <button onClick={() => this.props.deleteResource(this.props.index, index)}>x</button><a href={resource.url}>{resource.title}</a>
+                   </li>
+			  				)
 			  			}
 			  			)}
 			  		</ul>
 			  		<form>
-				  		<input name="title" id="title" onChange={this.handleTyping} value={this.state.title} placeholder="title"/>
+				  		<input
+				  			name="title"
+				  			id="title"
+				  			onChange={this.handleTyping}
+				  			value={this.state.title}
+				  			placeholder="Title"
+				  		/>
 				  		<br/>
-				  		<input name="url" id="url" onChange={this.handleTyping} value={this.state.url} placeholder="url" />
-				  		<br/>
-				  		<button onClick={this.handleSubmit}>Add Resource</button>
+				  		<input
+				  			name="url"
+				  			id="url"
+				  			onChange={this.handleTyping}
+				  			value={this.state.url}
+				  			placeholder="URL"
+				  		/>&nbsp;
+				  		<button onClick={this.handleSubmit}>+</button>
 			  		</form>
+			  		<hr />
 			  	</div>
 			  </div>
 	  	</div>

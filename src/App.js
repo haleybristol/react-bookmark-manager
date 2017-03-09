@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Subject from './Subject.js';
 import AddNewSubject from './AddNewSubject.js';
+import styled from 'styled-components';
+
+
 
 class App extends Component {
   constructor(props) {
@@ -9,6 +12,8 @@ class App extends Component {
     this.addNewResource = this.addNewResource.bind(this);
     this.addNewSubject = this.addNewSubject.bind(this);
     this.handleTyping = this.handleTyping.bind(this);
+    this.deleteSubject = this.deleteSubject.bind(this);
+    this.deleteSingleResource = this.deleteSingleResource.bind(this);
 
     this.state = {
       subject: '',
@@ -187,14 +192,38 @@ class App extends Component {
     this.setState(tempState);
   }
 
+  deleteSubject(subjectIndex) {
+    const tempState = this.state.resources;
+    tempState.splice(subjectIndex, 1);
+    this.setState({
+      deletedItem: tempState
+    });//read docs on set state
+  }
+
+  deleteSingleResource(subjectIndex, resourceIndex ) {
+    this.setState({
+      singleResource: this.state.resources[subjectIndex].resources.splice(resourceIndex, 1)
+    });
+  }
+
+
   render() {
     return(
       <div>
+      <br />
       <AddNewSubject addSubject={this.addNewSubject} />
+      <hr />
         {
           this.state.resources.map((resource, index) => {
             return(
-              <Subject key={resource.subject + index} index={index} items={resource} addResource={this.addNewResource}/>
+              <Subject
+                key={resource.subject + index}
+                index={index}
+                items={resource}
+                addResource={this.addNewResource}
+                deleteSubject={this.deleteSubject}
+                deleteResource={this.deleteSingleResource}
+              />
             )
           })
         }

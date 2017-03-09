@@ -19,9 +19,7 @@ export default class AddNewSubject extends Component {
 
     handleClick(e) {
         e.preventDefault();
-
         this.props.addSubject(this.state.subject);
-
         this.setState({
             subject: ''
         })
@@ -33,8 +31,9 @@ export default class AddNewSubject extends Component {
             <div className="container">
               <form>
                 <label htmlFor="subject"></label>
-                <input name="subject" id="subject" onChange={this.handleTyping} value={this.state.subject}/>
-                <button onClick={this.handleClick}>Add Subject</button>
+                <input name="subject" id="subject" onChange={this.handleTyping} value={this.state.subject} placeholder="Subject"/>
+                &nbsp;
+                <button onClick={this.handleClick}>+</button>
               </form>
             </div>
         )

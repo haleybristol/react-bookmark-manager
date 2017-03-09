@@ -30,7 +30,6 @@
   to { transform: rotate(360deg); }
 }
 
-.container.wrap {
-  width: 80%;
-  margin: 0 auto;
+.col-xs-3 {
+  color: red;
 }
